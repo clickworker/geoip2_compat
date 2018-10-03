@@ -1,5 +1,4 @@
 #include <ruby.h>
-#include <ruby/encoding.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +7,17 @@
 #include <stdarg.h>
 
 #include <maxminddb.h>
+
+#ifdef HAVE_RUBY_ENCODING_H
+
+#include <ruby/encoding.h>
+#define UTF8_ENCODED_STRING(str, size) rb_enc_str_new(str, size, rb_utf8_encoding())
+
+#else
+
+#define UTF8_ENCODED_STRING(str, size) rb_str_new(str, size)
+
+#endif
 
 VALUE cgeoip2_compat;
 VALUE egeoip2_compat_Exception;
@@ -60,7 +70,7 @@ static void geoip2_compat_lookup_internal(MMDB_lookup_result_s* result, VALUE ha
     VALUE val = Qnil;
     switch (entry_data.type) {
       case MMDB_DATA_TYPE_UTF8_STRING:
-        val = rb_enc_str_new(entry_data.utf8_string, entry_data.data_size, rb_utf8_encoding());
+        val = UTF8_ENCODED_STRING(entry_data.utf8_string, entry_data.data_size);
         break;
       case MMDB_DATA_TYPE_BYTES:
         val = rb_str_new((const char*)entry_data.bytes, entry_data.data_size);

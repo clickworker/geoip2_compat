@@ -31,4 +31,4 @@ task :vendor do
   cp "#{dir}/include/maxminddb_config.h.in", "ext/geoip2_compat/maxminddb_config.h"
 end
 
-task default: [:compile, :download, :test]
+task :default => [:compile, :download, :test]
