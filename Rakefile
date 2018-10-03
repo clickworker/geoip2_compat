@@ -19,12 +19,14 @@ task :download do
 end
 
 task :vendor do
-  version = "1.0.3"
+  version = "1.3.2"
   mkdir_p "tmp/"
   dir = "tmp/libmaxminddb-#{version}"
   cd "tmp/" do
     sh "curl -L https://github.com/maxmind/libmaxminddb/releases/download/#{version}/libmaxminddb-#{version}.tar.gz | tar xz"
   end
+  cp "#{dir}/src/data-pool.h", "ext/geoip2_compat/data-pool.h"
+  cp "#{dir}/src/data-pool.c", "ext/geoip2_compat/data-pool.c"
   cp "#{dir}/src/maxminddb-compat-util.h", "ext/geoip2_compat/maxminddb-compat-util.h"
   cp "#{dir}/src/maxminddb.c", "ext/geoip2_compat/maxminddb.c"
   cp "#{dir}/include/maxminddb.h", "ext/geoip2_compat/maxminddb.h"

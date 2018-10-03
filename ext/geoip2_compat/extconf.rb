@@ -6,6 +6,6 @@ $CFLAGS << " -std=c99 #{ENV['CFLAGS']}"
 
 RbConfig::MAKEFILE_CONFIG['CC'] = ENV['CC'] if ENV['CC']
 
-$defs << ' -DPACKAGE_VERSION=\"1.0.3\"'
+$defs << ' -DPACKAGE_VERSION=\"1.3.2\"'
 
 create_makefile("#{extension_name}/#{extension_name}")
