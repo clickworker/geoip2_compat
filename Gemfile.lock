@@ -1,0 +1,26 @@
+PATH
+  remote: .
+  specs:
+    geoip2-compat-clickworker (0.0.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    power_assert (1.1.3)
+    rake (10.5.0)
+    rake-compiler (0.9.9)
+      rake
+    test-unit (3.2.8)
+      power_assert
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  geoip2-compat-clickworker!
+  rake (~> 10.0)
+  rake-compiler (~> 0)
+  test-unit (~> 3)
+
+BUNDLED WITH
+   1.16.5

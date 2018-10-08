@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name         = "geoip2_compat"
+  s.name         = "geoip2-compat-clickworker"
   s.version      = "0.0.3"
 
   s.licenses     = ["MIT"]
